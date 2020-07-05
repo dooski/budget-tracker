@@ -1,5 +1,4 @@
-let transactions = [];
-let myChart;
+
 let db
 const request = indexedDB.open('transactDB', 1)
 
@@ -21,9 +20,7 @@ const checkDatabase = () => {
               return response.json()
             })
             .then(data => {
-              // save db data on global variable
               transactions = data
-
               populateTotal()
               populateTable()
               populateChart()
@@ -56,9 +53,12 @@ request.onsuccess = event => {
 }
 
 request.onerror = event => {
-  console.log('db error')
+  console.log(err)
 }
 
+
+let transactions = [];
+let myChart;
 fetch("/api/transaction")
   .then(response => {
     return response.json();
